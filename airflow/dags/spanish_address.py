@@ -28,7 +28,7 @@ start_operator = DummyOperator(
     dag=dag
 )
 
-stage_events_to_redshift = AddressSourceListOperator(
+address_source_list = AddressSourceListOperator(
     task_id='get_source_list',
     dag=dag,
     table='data_feed',
@@ -44,4 +44,4 @@ process_address = ProcessAddressOperator(
     scraped_folder = '/usr/local/airflow/scraped_files/'
 )
 
-start_operator >> stage_events_to_redshift >> process_address
+start_operator >> address_source_list >> process_address
